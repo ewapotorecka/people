@@ -1,0 +1,23 @@
+.add {
+	background-color: #5EEDBF;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 50%;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.remove {
+	background-color: #F76B91;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 50%;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
