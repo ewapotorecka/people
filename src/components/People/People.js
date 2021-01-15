@@ -81,7 +81,7 @@ export default function People() {
 				if ( category.subCategories ) {
 					return (
 						<SectionContainer type='section-container' text='And' key={ category.id }>
-							<div className='category-container'>
+							<div className='category-container with-subcategories'>
 								<div className='main-category-container'>
 									<div className='main-category'>{ category.name }</div>
 									<div className='remove-button-container'>
@@ -125,7 +125,7 @@ export default function People() {
 				}
 			} ) }
 			<div className='add-button-container-main'>
-				<button className='border-button'><Button type='add-big' onClick={ () => setPopUpVisible( true ) }><Plus className='big-svg' /></Button></button>
+				<div className='border-button'><Button type='add-big' onClick={ () => setPopUpVisible( true ) }><Plus className='big-svg' /></Button></div>
 
 			</div>
 			{
