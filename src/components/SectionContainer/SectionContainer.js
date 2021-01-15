@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function SectionContainer( props ) {
 	return (
-		<div className={ props.class }>
+		<div className={ props.type }>
 			<div className='left-container'>
 				<div className='text-container'>{ props.text }</div>
 				<div className='vertical-line'></div>

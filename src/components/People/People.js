@@ -12,18 +12,63 @@ const defaultCategories = [
 
 export default function People() {
 	const [ popUpVisible, setPopUpVisible ] = useState( false );
+	const [ currentCategory, setCurrentCategory ] = useState( null );
 	const [ categories, setCategories ] = useState( defaultCategories );
 
 	const handleCategoryAdd = category => {
+		if ( !currentCategory ) {
+			const newCategoryObject = {
+				name: category,
+				id: `${ Math.floor( Math.random() * 1000000 ) }_${ category }`
+			};
+
+			setCategories( [ ...categories, newCategoryObject ] );
+		} else {
+			handleSubCategoryAdd( category );
+		}
+
+	};
+	const handleSubCategoryAdd = ( category ) => {
+		const categoriesCopy = [ ...categories ];
 		const newCategoryObject = {
 			name: category,
 			id: `${ Math.floor( Math.random() * 1000000 ) }_${ category }`
 		};
 
-		setCategories( [ ...categories, newCategoryObject ] );
-	}
+		for ( let i = 0; i < categoriesCopy.length; i++ ) {
+			if ( categoriesCopy[ i ].id === currentCategory.id ) {
+				console.log( categories[ i ] )
+				categories[ i ].subCategories.push( newCategoryObject );
+			}
+		}
 
+		setCategories( categoriesCopy );
+		setCurrentCategory( null );
+	};
+	const handleCategoryRemove = ( categoryId ) => {
+		const filteredCategories = categories.filter( category => {
+			return category.id !== categoryId;
+		} );
 
+		setCategories( filteredCategories );
+
+	};
+	const handleSubcategoryRemove = ( categoryId, subCategoryId ) => {
+		const categoriesCopy = [ ...categories ];
+
+		for ( let i = 0; i < categoriesCopy.length; i++ ) {
+			if ( categories[ i ].id === categoryId ) {
+				const filteredSubCategories = categories[ i ].subCategories.filter( ( subCategory ) => {
+					return subCategory.id !== subCategoryId;
+				} );
+
+				categoriesCopy[ i ].subCategories = filteredSubCategories;
+
+			}
+		}
+
+		setCategories( categoriesCopy );
+	};
 
 	return (
 		<div className='people-container'>
@@ -34,26 +79,39 @@ export default function People() {
 			{ categories.map( category => {
 				if ( category.subCategories ) {
 					return (
-						<SectionContainer class='section-container' text='And' key={ category.id }>
-							<CategoryElement class='category-container'>
-								<div class='category-name-border'>{ category.name }</div>
+						<SectionContainer type='section-container' text='And' key={ category.id }>
+							<CategoryElement type='category-container'>
+								<div className='section-container'>
+									<div className='category-name-border'>{ category.name }</div>
+									<Button type='remove' onClick={ () => handleCategoryRemove( category.id ) }>-</Button>
+								</div>
+
 								{ category.subCategories.map( ( subCategory ) => {
 									return (
-										<SectionContainer class='sub-section-container' text='Or' key={ subCategory.id }>
-											<CategoryElement class='subcategory-container'>{ subCategory.name }</CategoryElement>
+										<SectionContainer type='sub-section-container' text='Or' key={ subCategory.id }>
+											<div className='subcategory-container'>
+												<CategoryElement>{ subCategory.name }</CategoryElement>
+												<Button type='remove' onClick={ () => handleSubcategoryRemove( category.id, subCategory.id ) }>-</Button>
+											</div>
 										</SectionContainer>
 									);
 								} ) }
 								<div className='add-button-container'>
-									<Button type='add'>+</Button>
+									<Button type='add' onClick={ () => {
+										setPopUpVisible( true );
+										setCurrentCategory( category )
+									} }>+</Button>
 								</div>
 							</CategoryElement>
 						</SectionContainer>
 					);
 				} else {
 					return (
-						<SectionContainer class='section-container' text='And' key={ category.id }>
-							<CategoryElement class='category-container'>{ category.name }</CategoryElement>
+						<SectionContainer type='section-container' text='And' key={ category.id }>
+							<div className='category-container'>
+								<CategoryElement>{ category.name }</CategoryElement>
+								<Button type='remove' onClick={ () => handleCategoryRemove( category.id ) }>-</Button>
+							</div>
 						</SectionContainer>
 					);
 				}

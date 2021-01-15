@@ -16,11 +16,11 @@ export default function PopUp( props ) {
 		setCategoryName( event.target.value );
 	};
 
-	useEffect( () => {
-		document.addEventListener( 'click', event => handleClickOutside( event ) );
+	// useEffect( () => {
+	// 	document.addEventListener( 'click', event => handleClickOutside( event ) );
 
-		return () => document.removeEventListener( 'click', handleClickOutside );
-	}, [] );
+	// 	return () => document.removeEventListener( 'click', handleClickOutside );
+	// }, [] );
 
 	return (
 		<div className='pop-up-container'>
