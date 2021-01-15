@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import SectionContainer from '../SectionContainer/SectionContainer';
-import CategoryElement from '../CategoryElement/CategoryElement';
 import Button from '../Button/Button';
 import PopUp from '../PopUp/PopUp';
 import './people.css';
@@ -80,17 +79,18 @@ export default function People() {
 				if ( category.subCategories ) {
 					return (
 						<SectionContainer type='section-container' text='And' key={ category.id }>
-							<CategoryElement type='category-container'>
-								<div className='section-container'>
-									<div className='category-name-border'>{ category.name }</div>
-									<Button type='remove' onClick={ () => handleCategoryRemove( category.id ) }>-</Button>
+							<div className='category-container'>
+								<div className='main-category-container'>
+									<div className='main-category'>{ category.name }</div>
+									<div className='remove-button-container'>
+										<Button type='remove' onClick={ () => handleCategoryRemove( category.id ) }>-</Button>
+									</div>
 								</div>
-
 								{ category.subCategories.map( ( subCategory ) => {
 									return (
 										<SectionContainer type='sub-section-container' text='Or' key={ subCategory.id }>
 											<div className='subcategory-container'>
-												<CategoryElement>{ subCategory.name }</CategoryElement>
+												{ subCategory.name }
 												<Button type='remove' onClick={ () => handleSubcategoryRemove( category.id, subCategory.id ) }>-</Button>
 											</div>
 										</SectionContainer>
@@ -102,26 +102,34 @@ export default function People() {
 										setCurrentCategory( category )
 									} }>+</Button>
 								</div>
-							</CategoryElement>
+							</div>
+
+
+
 						</SectionContainer>
 					);
 				} else {
 					return (
 						<SectionContainer type='section-container' text='And' key={ category.id }>
 							<div className='category-container'>
-								<CategoryElement>{ category.name }</CategoryElement>
-								<Button type='remove' onClick={ () => handleCategoryRemove( category.id ) }>-</Button>
+								<div className='category-name-container'>
+
+									{ category.name }
+									<Button type='remove' onClick={ () => handleCategoryRemove( category.id ) }>-</Button>
+								</div>
 							</div>
 						</SectionContainer>
 					);
 				}
 			} ) }
-			<div className='add-button-container'>
+			<div className='add-button-container-main'>
 				<Button type='add' onClick={ () => setPopUpVisible( true ) }>+</Button>
 			</div>
-			{ popUpVisible && <PopUp
-				handleCategoryAdd={ category => handleCategoryAdd( category ) }
-				handlePopUpClose={ () => setPopUpVisible( false ) } /> }
-		</div>
+			{
+				popUpVisible && <PopUp
+					handleCategoryAdd={ category => handleCategoryAdd( category ) }
+					handlePopUpClose={ () => setPopUpVisible( false ) } />
+			}
+		</div >
 	);
 }
