@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import SectionContainer from '../SectionContainer/SectionContainer';
 import Button from '../Button/Button';
 import PopUp from '../PopUp/PopUp';
+import { ReactComponent as Plus } from '../../svg/plus.svg';
+import { ReactComponent as Minus } from '../../svg/minus.svg';
 import './people.css';
 
 const defaultCategories = [
@@ -83,7 +85,7 @@ export default function People() {
 								<div className='main-category-container'>
 									<div className='main-category'>{ category.name }</div>
 									<div className='remove-button-container'>
-										<Button type='remove' onClick={ () => handleCategoryRemove( category.id ) }>-</Button>
+										<Button type='remove' onClick={ () => handleCategoryRemove( category.id ) }><Minus className='small-svg' /></Button>
 									</div>
 								</div>
 								{ category.subCategories.map( ( subCategory ) => {
@@ -91,7 +93,7 @@ export default function People() {
 										<SectionContainer type='subsection-container' text='Or' key={ subCategory.id }>
 											<div className='subcategory-container'>
 												{ subCategory.name }
-												<Button type='remove' onClick={ () => handleSubcategoryRemove( category.id, subCategory.id ) }>-</Button>
+												<Button type='remove' onClick={ () => handleSubcategoryRemove( category.id, subCategory.id ) }><Minus className='small-svg' /></Button>
 											</div>
 										</SectionContainer>
 									);
@@ -100,7 +102,7 @@ export default function People() {
 									<Button type='add' onClick={ () => {
 										setPopUpVisible( true );
 										setCurrentCategory( category )
-									} }>+</Button>
+									} }><Plus className='small-svg' /></Button>
 								</div>
 							</div>
 
@@ -115,7 +117,7 @@ export default function People() {
 								<div className='category-name-container'>
 
 									{ category.name }
-									<Button type='remove' onClick={ () => handleCategoryRemove( category.id ) }>-</Button>
+									<Button type='remove' onClick={ () => handleCategoryRemove( category.id ) }><Minus className='small-svg' /></Button>
 								</div>
 							</div>
 						</SectionContainer>
@@ -123,7 +125,8 @@ export default function People() {
 				}
 			} ) }
 			<div className='add-button-container-main'>
-				<Button type='add' onClick={ () => setPopUpVisible( true ) }>+</Button>
+				<button className='border-button'><Button type='add-big' onClick={ () => setPopUpVisible( true ) }><Plus className='big-svg' /></Button></button>
+
 			</div>
 			{
 				popUpVisible && <PopUp
