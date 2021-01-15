@@ -1,0 +1,123 @@
+.section-container {
+	display: flex;
+}
+
+.left-container-section-container {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	width: 100px;
+}
+
+.right-container {
+	display: flex;
+	align-items: center;
+	min-width: 50%;
+}
+
+.subsection-container {
+	display: flex;
+}
+
+.left-container-subsection-container {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	width: 20px;
+}
+
+.category-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	color: #4B5A7B;
+	width: 100%;
+	width: 320px;
+	padding: 20px;
+	border-width: 6px;
+	/*
+	Border-radius does not work with border-image
+	 */
+	border-style: solid;
+	border-image: 
+  		linear-gradient(
+		to bottom, 
+		#7176f7, #8076f6, #8d76f5, #9976f4, #a476f3
+ 		) 1 100%;
+	border-right: none;
+	border-top: none;
+	border-bottom: none;
+	box-shadow: 1px 1px 2px 0px rgba(137,141,248,1);
+	margin-top: 20px;
+}
+
+.category-name-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.subcategory-container {
+	display: flex;
+	justify-content: space-between;
+	color: #4B5A7B;
+	border: 1px solid #CACDD7;
+	border-radius: 4px;
+	width: 200px;
+	padding: 10px;
+	margin-top: 10px;
+}
+
+.main-category-container {
+	display: flex;
+	justify-content: space-between;
+	width: 252px;
+}
+
+.main-category {
+
+	color: #4B5A7B;
+	border: 1px solid #CACDD7;
+	border-radius: 4px;
+	width: 200px;
+	padding: 10px;
+	margin-top: 10px;
+}
+
+.vertical-line {
+	width: 0px;
+	height: 100%;
+	border-left: 1px solid #CACDD7;
+}
+
+.horizontal-line-section-container {
+	height: 0px;
+	width: 50px;
+	border-bottom: 1px solid #CACDD7;
+}
+
+.horizontal-line-subsection-container {
+	height: 0px;
+	width: 20px;
+	border-bottom: 1px solid #CACDD7;
+}
+
+.text-container {
+	color: #CACDD7;
+	padding: 10px;
+	font-size: 0.8em;
+}
+
+.add-button-container-main button {
+	margin-left: 84px;
+	margin-top: 5px;
+}
+
+.add-button-container button {
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+.remove-button-container {
+	display: flex;
+	align-items: center;
+}

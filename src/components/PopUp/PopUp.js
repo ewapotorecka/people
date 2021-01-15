@@ -6,9 +6,7 @@ export default function PopUp( props ) {
 	const [ categoryName, setCategoryName ] = useState( '' );
 
 	const handleClickOutside = ( event ) => {
-		if ( popUp.current.contains( event.target ) ) {
-			return;
-		} else {
+		if ( popUp.current && !popUp.current.contains( event.target ) ) {
 			props.handlePopUpClose();
 		}
 	};
@@ -16,11 +14,11 @@ export default function PopUp( props ) {
 		setCategoryName( event.target.value );
 	};
 
-	// useEffect( () => {
-	// 	document.addEventListener( 'click', event => handleClickOutside( event ) );
+	useEffect( () => {
+		document.addEventListener( 'click', event => handleClickOutside( event ) );
 
-	// 	return () => document.removeEventListener( 'click', handleClickOutside );
-	// }, [] );
+		return () => document.removeEventListener( 'click', handleClickOutside );
+	} );
 
 	return (
 		<div className='pop-up-container'>

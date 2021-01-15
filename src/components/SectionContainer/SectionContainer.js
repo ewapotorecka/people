@@ -1,4 +1,5 @@
 import React from 'react';
+import './section-container.css';
 
 export default function SectionContainer( props ) {
 	return (

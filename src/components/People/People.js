@@ -88,7 +88,7 @@ export default function People() {
 								</div>
 								{ category.subCategories.map( ( subCategory ) => {
 									return (
-										<SectionContainer type='sub-section-container' text='Or' key={ subCategory.id }>
+										<SectionContainer type='subsection-container' text='Or' key={ subCategory.id }>
 											<div className='subcategory-container'>
 												{ subCategory.name }
 												<Button type='remove' onClick={ () => handleSubcategoryRemove( category.id, subCategory.id ) }>-</Button>
