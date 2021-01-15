@@ -5,7 +5,7 @@ import './category-element.css';
 export default function CategoryElement( props ) {
 	return (
 		<div className={ props.type }>
-			<div className={ `${ props.class }-name` }>
+			<div>
 				{ props.children }
 			</div>
 
