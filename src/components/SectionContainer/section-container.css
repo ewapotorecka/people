@@ -1,5 +1,6 @@
 .section-container {
 	display: flex;
+	font-weight: bold;
 }
 
 .left-container-section-container {
